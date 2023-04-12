@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import Deck from "../models/Deck.js";
 
 /* READ */
 export const getUser = async (req, res) => {
@@ -21,7 +22,15 @@ export const getUserFriends = async (req, res) => {
     );
     const formattedFriends = friends.map(
       ({ _id, firstName, lastName, email, password, courses, numCourses }) => {
-        return { _id, firstName, lastName, email, password, courses, numCourses };
+        return {
+          _id,
+          firstName,
+          lastName,
+          email,
+          password,
+          courses,
+          numCourses,
+        };
       }
     );
     res.status(200).json(formattedFriends);
@@ -51,9 +60,17 @@ export const addRemoveFriend = async (req, res) => {
       user.friends.map((id) => User.findById(id))
     );
     const formattedFriends = friends.map(
-        ({ _id, firstName, lastName, email, password, courses, numCourses }) => {
-          return { _id, firstName, lastName, email, password, courses, numCourses };
-        }
+      ({ _id, firstName, lastName, email, password, courses, numCourses }) => {
+        return {
+          _id,
+          firstName,
+          lastName,
+          email,
+          password,
+          courses,
+          numCourses,
+        };
+      }
     );
 
     res.status(200).json(formattedFriends);
