@@ -11,11 +11,17 @@ import { fileURLToPath } from "url";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
+import deckRoutes from "./routes/decks.js";
+import cardRoutes from "./routes/cards.js";
 import { register } from "./controllers/auth.js";
 import { createPost } from "./controllers/posts.js";
+import { createDeck } from "./controllers/decks.js";
+import { createCard } from "./controllers/cards.js";
 import { verifyToken } from "./middleware/auth.js";
 import User from "./models/User.js";
 import Post from "./models/Post.js";
+import Deck from "./models/Deck.js";
+import Card from "./models/Card.js";
 import { users, posts } from "./data/index.js";
 
 /* CONFIGURATIONS */
@@ -46,11 +52,15 @@ const upload = multer({ storage });
 /* ROUTES WITH FILES */
 app.post("/auth/register", upload.single("picture"), register); 
 app.post("/posts", verifyToken, upload.single("picture"), createPost);/* verify tiken here since we want user to be logged in alr */
+app.post("/decks", verifyToken, upload.single("picture"), createDeck);/* verify tiken here since we want user to be logged in alr */
+app.post("/cards", verifyToken, upload.single("picture"), createCard);/* verify tiken here since we want user to be logged in alr */
 
 // /* ROUTES */
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
+app.use("/decks", deckRoutes);
+app.use("/cards", cardRoutes);
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 6001;
@@ -65,5 +75,8 @@ mongoose
     /* ADD DATA ONE TIME */
     User.insertMany(users);
     Post.insertMany(posts);
+    Deck.insertMany(decks);
+    Card.insertMany(cards);
   })
   .catch((error) => console.log(`${error} did not connect`));
+  // getting a decks isnot define did not connect since there are not examples of deck in data examples 

@@ -7,14 +7,13 @@ import {
   updateCardFrontPicturePath,
   updateCardBackPicturePath,
   updateCardStatus,
-  updateCardStatus,
 } from "../controllers/cards.js";
 import { verifyToken } from "../middleware/auth.js";
 
 const router = express.Router();
 
 /* READ */
-router.get("/", verifyToken, getUserPosts);
+// router.get("/", verifyToken, getUserPosts);
 router.get("/:userId/:deckId/cards", verifyToken, getDeckCards);
 router.get("/:userId/:deckId/cardsStatus", verifyToken, getCardsByStatus);
 

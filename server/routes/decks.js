@@ -15,7 +15,7 @@ import { verifyToken } from "../middleware/auth.js";
 const router = express.Router();
 
 /* READ */
-router.get("/", verifyToken, getUserPosts);
+// router.get("/", verifyToken, getUserPosts);
 router.get("/:userId/decks", verifyToken, getUserDecks);
 
 /* UPDATE */
