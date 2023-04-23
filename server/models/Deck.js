@@ -13,10 +13,6 @@ const deckSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    deckId: {
-      type: String,
-      required: true,
-    },
     description: String,
     picturePath: String,
     userPicturePath: String,

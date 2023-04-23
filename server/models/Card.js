@@ -9,10 +9,6 @@ const cardSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    cardId: {
-      type: String,
-      required: true,
-    },
     front: {
       type: String,
       required: true,

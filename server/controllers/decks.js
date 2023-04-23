@@ -4,7 +4,7 @@ import Deck from "../models/Deck.js";
 /* CREATE */
 export const createDeck = async (req, res) => {
   try {
-    const { userId, deckId, deckName, description, picturePath } = req.body;
+    const { userId, deckName, description, picturePath } = req.body;
     const user = await User.findById(userId);
     const newDeck = new Deck({
       userId,
@@ -24,20 +24,9 @@ export const createDeck = async (req, res) => {
 };
 
 /* READ */
-export const getDeckById = async (req, res) => {
-  try {
-    const deckId = req.params.deckId;
-    const deck = await Deck.findById(deckId).populate("cards");
-
-    res.status(200).json(deck);
-  } catch (err) {
-    res.status(404).json({ message: err.message });
-  }
-};
-
 export const getUserDecks = async (req, res) => {
   try {
-    const { userId } = req.params.userId;
+    const { userId } = req.params;
     const deck = await Deck.find({ userId });
 
     res.status(200).json(deck);
@@ -49,7 +38,7 @@ export const getUserDecks = async (req, res) => {
 /* UPDATE */
 export const renameDeck = async (req, res) => {
   try {
-    const deckId = req.params.deckId;
+    const deckId = req.params._id;
     const deckName = req.body;
 
     const deck = await Deck.findByIdAndUpdate(
@@ -66,7 +55,7 @@ export const renameDeck = async (req, res) => {
 
 export const updatePicturePath = async (req, res) => {
   try {
-    const deckId = req.params.deckId;
+    const deckId = req.params._id;
     const picturePath = req.body;
 
     const deck = await Deck.findByIdAndUpdate(

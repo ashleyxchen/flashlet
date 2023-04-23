@@ -39,7 +39,7 @@ export const createCard = async (req, res) => {
 /* READ */
 export const getDeckCards = async (req, res) => {
   try {
-    const { cardId } = req.params;
+    const { cardId } = req.params._id;
     const card = await Deck.find({ cardId });
     res.status(200).json(card);
   } catch (err) {
@@ -49,7 +49,7 @@ export const getDeckCards = async (req, res) => {
 
 export const getCardsByStatus = async (req, res) => {
   try {
-    const { cardId } = req.params.cardId;
+    const { cardId } = req.params._id;
     const { status } = req.params.status;
     const card = await Deck.find({ cardId, status });
     res.status(200).json(card);
@@ -61,7 +61,7 @@ export const getCardsByStatus = async (req, res) => {
 /* UPDATE */
 export const updateCardFront = async (req, res) => {
   try {
-    const cardId = req.params.cardId;
+    const cardId = req.params._id;
     const { front } = req.body;
 
     const updatedCard = await Card.findByIdAndUpdate(
@@ -78,7 +78,7 @@ export const updateCardFront = async (req, res) => {
 
 export const updateCardBack = async (req, res) => {
   try {
-    const cardId = req.params.cardId;
+    const cardId = req.params._id;
     const { back } = req.body;
 
     const updatedCard = await Card.findByIdAndUpdate(
@@ -95,7 +95,7 @@ export const updateCardBack = async (req, res) => {
 
 export const updateCardFrontPicturePath = async (req, res) => {
   try {
-    const cardId = req.params.cardId;
+    const cardId = req.params._id;
     const { frontPicturePath } = req.body;
 
     const updatedCard = await Card.findByIdAndUpdate(
@@ -112,7 +112,7 @@ export const updateCardFrontPicturePath = async (req, res) => {
 
 export const updateCardBackPicturePath = async (req, res) => {
   try {
-    const cardId = req.params.cardId;
+    const cardId = req.params._id;
     const { backPicturePath } = req.body;
 
     const updatedCard = await Card.findByIdAndUpdate(
@@ -129,7 +129,7 @@ export const updateCardBackPicturePath = async (req, res) => {
 
 export const updateCardStatus = async (req, res) => {
   try {
-    const cardId = req.params.cardId;
+    const cardId = req.params._id;
     const { status } = req.params.status;
 
     const updatedCard = await Card.findByIdAndUpdate(
@@ -148,7 +148,7 @@ export const updateCardStatus = async (req, res) => {
 
 export const deleteCard = async (req, res) => {
   try {
-    const { cardId } = req.params.cardId;
+    const { cardId } = req.params._id;
     const deletedCard = await Deck.findByIdAndDelete(cardId);
     if (!deletedCard) {
       return res.status(404).json({ message: "Card not found" });
