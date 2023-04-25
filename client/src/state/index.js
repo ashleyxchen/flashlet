@@ -39,6 +39,26 @@ export const authSlice = createSlice({
       });
       state.posts = updatedPosts;
     },
+    setDecks: (state, action) => {
+      state.decks = action.payload.decks;
+    },
+    setDeck: (state, action) => {
+      const updatedDecks = state.posts.map((deck) => {
+        if (deck._id === action.payload.deck._id) return action.payload.deck;
+        return deck;
+      });
+      state.deck = updatedDecks;
+    },
+    setCards: (state, action) => {
+      state.cards = action.payload.cards;
+    },
+    setCard: (state, action) => {
+      const updatedCards = state.posts.map((card) => {
+        if (card._id === action.payload.card._id) return action.payload.card;
+        return card;
+      });
+      state.deck = updatedCards;
+    },
   },
 });
 
