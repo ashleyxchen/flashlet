@@ -2,6 +2,8 @@ import { Box, useMediaQuery } from "@mui/material";
 import { useSelector } from "react-redux";
 import Navbar from "scenes/navbar";
 import DeckWidget from "scenes/widgets/DeckWidget";
+import MyDeckWidget from "scenes/widgets/MyDeckWidget";
+
 
 const HomePage = () => {
     const isNonMobileScreens = useMediaQuery("(min-width:1000px")
@@ -25,8 +27,8 @@ const HomePage = () => {
           flexBasis={isNonMobileScreens ? "42%" : undefined}
           mt={isNonMobileScreens ? undefined : "2rem"}
         >
-          {/* <MyPostWidget picturePath={picturePath} />
-          <PostsWidget userId={_id} /> */}
+          <MyDeckWidget picturePath={picturePath} />
+          <DeckWidget userId={_id} />
         </Box>
         {/* {isNonMobileScreens && (
           <Box flexBasis="26%">
