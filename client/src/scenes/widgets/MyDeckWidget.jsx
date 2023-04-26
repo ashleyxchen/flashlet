@@ -45,12 +45,14 @@ import {
         formData.append("picture", image);
         formData.append("picturePath", image.name);
       }
-  
+      // send post to backend
       const response = await fetch(`http://localhost:3001/decks`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: formData,
       });
+
+      // backend response
       const decks = await response.json();
       dispatch(setDecks({ decks }));
       setImage(null);
@@ -72,6 +74,7 @@ import {
               padding: "1rem 2rem",
             }}
           />
+          {/* add dropzone for xml file */}
         </FlexBetween>
         {isImage && (
           <Box
